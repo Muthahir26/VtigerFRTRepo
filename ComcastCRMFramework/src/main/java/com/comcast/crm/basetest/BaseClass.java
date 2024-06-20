@@ -45,8 +45,8 @@ public class BaseClass {
 	@BeforeClass(groups = {"smokeTest","regressionTest"})
 	public void configBC() throws Throwable {
 		System.out.println("===>Open browser, Report Config<===");
-		String Browser=fLib.getDataFromPropertyFile("browser");//String Browser= browser -( if parameterized)
-
+		//String Browser=fLib.getDataFromPropertyFile("browser");//String Browser= browser -( if parameterized)
+		String Browser=System.getProperty("browser",fLib.getDataFromPropertyFile("browser"));
 		if(Browser.equals("chrome")) {
 			driver=new ChromeDriver();
 		}
@@ -67,10 +67,13 @@ public class BaseClass {
 	}
 	@BeforeMethod(groups = {"smokeTest","regressionTest"})
 	public void configBM() throws Throwable {
-		String URL=fLib.getDataFromPropertyFile("url");
-		System.out.println("===>login Vtiger, Report Config<===");
-		String USERNAME=fLib.getDataFromPropertyFile("un");
-		String PASSWORD=fLib.getDataFromPropertyFile("pw");
+		String URL=System.getProperty("url",fLib.getDataFromPropertyFile("url"));
+		String USERNAME=System.getProperty("username",fLib.getDataFromPropertyFile("un"));
+		String PASSWORD=System.getProperty("password",fLib.getDataFromPropertyFile("pw"));
+//		String URL=fLib.getDataFromPropertyFile("url");
+//		System.out.println("===>login Vtiger, Report Config<===");
+//		String USERNAME=fLib.getDataFromPropertyFile("un");
+//		String PASSWORD=fLib.getDataFromPropertyFile("pw");
 		LoginPage lp=new LoginPage(driver);
 		System.out.println(USERNAME);
 		System.out.println(PASSWORD);
