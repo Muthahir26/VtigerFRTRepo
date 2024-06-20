@@ -9,7 +9,6 @@
 		  <id>FRT</id>
 		   <build>
 	    	<plugins>
-			<!-- Below plug-in is used to execute tests -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
